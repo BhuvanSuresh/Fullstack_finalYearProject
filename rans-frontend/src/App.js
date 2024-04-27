@@ -8,6 +8,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [isGlobalMonitoringActive, setIsGlobalMonitoringActive] = useState(false);
   const [isHoneyPotActive, setIsHoneyPotActive] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const newSocket = io('http://localhost:5000');
@@ -24,6 +25,9 @@ function App() {
 
     newSocket.on('honeypot-message', message => {
       console.log('Received Honey Pot message:', message);
+      if (message.trim() === "600 Alert") {
+        setShowPopup(true);
+      }
       setHoneyPotMessages(prevMessages => [...prevMessages, message]);
     });
 
@@ -54,8 +58,18 @@ function App() {
     setIsHoneyPotActive(false);
   };
 
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className={styles.container}>
+      {showPopup && (
+        <div className={styles.popup}>
+          <h2 style={{ color: 'red', border: '2px solid red', padding: '10px' }}>Ransomware Detected</h2>
+          <button onClick={handleClosePopup}>Close</button>
+        </div>
+      )}
       <div className={styles.monitoringSection}>
         <h1 className={styles.header}>Global Monitoring</h1>
         <button className={isGlobalMonitoringActive ? styles.buttonDisabled : styles.button} onClick={handleRunGlobalMonitoring} disabled={isGlobalMonitoringActive}>Start Global Monitoring</button>

@@ -1,6 +1,6 @@
 /* App.module.css */
 *{
-    background-color: #282c34; /* Updated dark background for better contrast */
+    background-color: #313846; /* Updated dark background for better contrast */
 }
 
 .container {
@@ -15,6 +15,7 @@
     color: #61dafb; /* Light blue for a vibrant contrast */
     text-align: center;
     font-size: 24px; /* Larger font size for better readability */
+    background-color: #20232a;
 }
 
 .button {
@@ -46,6 +47,7 @@
 }
 
 .logs {
+    color: turquoise;
     background-color: #20232a; /* Darker shade for differentiation */
     border-radius: 5px;
     padding: 20px;
@@ -56,12 +58,51 @@
     color: #ccc; /* Light grey text for better readability */
     border-bottom: 1px solid #333; /* Subtle separation */
     padding: 10px;
+    
 }
+
+.scrollableWin {
+    border-radius: 15px;
+    max-height: 200px;
+    overflow: scroll;
+    overflow-x: hidden;
+    
+    /* Styles for the scrollbar track */
+    scrollbar-width: thin; /* for Firefox */
+    scrollbar-color: turquoise #20232a; /* for Firefox: thumb and track color */
+
+    /* Styles for Webkit browsers like Chrome, Safari */
+    &::-webkit-scrollbar {
+        width: 8px; /* width of the entire scrollbar */
+        border-radius: 15px; /* radius of the scrollbar itself */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #20232a; /* color of the track */
+        border-radius: 15px; /* radius of the track */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: turquoise; /* color of the thumb */
+        border-radius: 10px; /* radius of the thumb */
+        border: 3px solid #20232a; /* creates padding around the thumb */
+    }
+}
+
 
 .monitoringSection {
     flex: 1;
     margin: 10px;
     padding: 20px;
     background-color: #20232a; /* Matching dark background for sections */
-    border-radius: 5px;
+    border-radius: 15px;
+}
+
+.buttonWrapper{
+    background-color: #20232a;
+}
+
+.topHeaderStatusBar{
+    background-color: #aaa;
+    height: 50px;
 }
